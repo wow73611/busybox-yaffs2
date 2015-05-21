@@ -2,7 +2,7 @@
  * Automatically generated C config: don't edit
  * Busybox version: 1.23.2
  */
-#define AUTOCONF_TIMESTAMP "2015-05-21 01:28:36 PDT"
+#define AUTOCONF_TIMESTAMP "2015-05-21 01:31:12 PDT"
 
 #define CONFIG_HAVE_DOT_CONFIG 1
 #define ENABLE_HAVE_DOT_CONFIG 1
@@ -284,10 +284,14 @@
 /*
  * Build Options
  */
-#undef CONFIG_STATIC
-#define ENABLE_STATIC 0
-#define IF_STATIC(...)
-#define IF_NOT_STATIC(...) __VA_ARGS__
+#define CONFIG_STATIC 1
+#define ENABLE_STATIC 1
+#ifdef MAKE_SUID
+# define IF_STATIC(...) __VA_ARGS__ "CONFIG_STATIC"
+#else
+# define IF_STATIC(...) __VA_ARGS__
+#endif
+#define IF_NOT_STATIC(...)
 #undef CONFIG_PIE
 #define ENABLE_PIE 0
 #define IF_PIE(...)
@@ -6616,22 +6620,22 @@
 #define ENABLE_FEATURE_SH_IS_NONE 0
 #define IF_FEATURE_SH_IS_NONE(...)
 #define IF_NOT_FEATURE_SH_IS_NONE(...) __VA_ARGS__
-#undef CONFIG_FEATURE_BASH_IS_ASH
-#define ENABLE_FEATURE_BASH_IS_ASH 0
-#define IF_FEATURE_BASH_IS_ASH(...)
-#define IF_NOT_FEATURE_BASH_IS_ASH(...) __VA_ARGS__
+#define CONFIG_FEATURE_BASH_IS_ASH 1
+#define ENABLE_FEATURE_BASH_IS_ASH 1
+#ifdef MAKE_SUID
+# define IF_FEATURE_BASH_IS_ASH(...) __VA_ARGS__ "CONFIG_FEATURE_BASH_IS_ASH"
+#else
+# define IF_FEATURE_BASH_IS_ASH(...) __VA_ARGS__
+#endif
+#define IF_NOT_FEATURE_BASH_IS_ASH(...)
 #undef CONFIG_FEATURE_BASH_IS_HUSH
 #define ENABLE_FEATURE_BASH_IS_HUSH 0
 #define IF_FEATURE_BASH_IS_HUSH(...)
 #define IF_NOT_FEATURE_BASH_IS_HUSH(...) __VA_ARGS__
-#define CONFIG_FEATURE_BASH_IS_NONE 1
-#define ENABLE_FEATURE_BASH_IS_NONE 1
-#ifdef MAKE_SUID
-# define IF_FEATURE_BASH_IS_NONE(...) __VA_ARGS__ "CONFIG_FEATURE_BASH_IS_NONE"
-#else
-# define IF_FEATURE_BASH_IS_NONE(...) __VA_ARGS__
-#endif
-#define IF_NOT_FEATURE_BASH_IS_NONE(...)
+#undef CONFIG_FEATURE_BASH_IS_NONE
+#define ENABLE_FEATURE_BASH_IS_NONE 0
+#define IF_FEATURE_BASH_IS_NONE(...)
+#define IF_NOT_FEATURE_BASH_IS_NONE(...) __VA_ARGS__
 #define CONFIG_SH_MATH_SUPPORT 1
 #define ENABLE_SH_MATH_SUPPORT 1
 #ifdef MAKE_SUID
